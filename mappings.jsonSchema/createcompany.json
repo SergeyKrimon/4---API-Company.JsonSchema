@@ -1,0 +1,107 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome",
+    "definitions": {
+        "Welcome": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "request": {
+                    "$ref": "#/definitions/Request"
+                },
+                "response": {
+                    "$ref": "#/definitions/Response"
+                }
+            },
+            "required": [
+                "request",
+                "response"
+            ],
+            "title": "Welcome"
+        },
+        "Request": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "method": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "headers": {
+                    "$ref": "#/definitions/Headers"
+                },
+                "bodyPatterns": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BodyPattern"
+                    }
+                }
+            },
+            "required": [
+                "bodyPatterns",
+                "headers",
+                "method",
+                "url"
+            ],
+            "title": "Request"
+        },
+        "BodyPattern": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "matchesJsonPath": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "matchesJsonPath"
+            ],
+            "title": "BodyPattern"
+        },
+        "Headers": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Authorization": {
+                    "$ref": "#/definitions/Authorization"
+                }
+            },
+            "required": [
+                "Authorization"
+            ],
+            "title": "Headers"
+        },
+        "Authorization": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "contains": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "contains"
+            ],
+            "title": "Authorization"
+        },
+        "Response": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "status": {
+                    "type": "integer"
+                },
+                "bodyFileName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "bodyFileName",
+                "status"
+            ],
+            "title": "Response"
+        }
+    }
+}
